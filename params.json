@@ -1,0 +1,6 @@
+{
+  "name": "Project Mini Golf",
+  "tagline": "This is a mini golf game made in unity",
+  "body": "# Mini Golf\r\nThis is a open source Mini Golf project made in Unity. It is a 1 or 2 player game were the goal is simply try to get the lowest possiable score.\r\n\r\n## What Do I Need To Help\r\nAll you need is Unity 5.4.0f3 - we are using the free version\r\n\r\n## Can I Join Buckeye Studios\r\nYes anyone is welcome\r\n\r\n## I want to contrubite cource tiles is there a formate I need to follow?\r\nYes all of the peices are built using ProBuilder so these setting are for that.\r\nAll tiles are 15 x ? x 15 (were \"?\" is any number)\r\nFor flat tiles we use the following size 15 x 0.1 x 15\r\n\r\n## Codeing Format\r\nWe are using Visual Basic Coding Standerds. They are pictured below:\r\n<Insert Picture Here>",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
