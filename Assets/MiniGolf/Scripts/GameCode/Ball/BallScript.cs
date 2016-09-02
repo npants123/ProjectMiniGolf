@@ -44,8 +44,8 @@ public class BallScript : MonoBehaviour
         NULL,
         // Either reached the hole or has run out of strokes.
         WIN,
-        BIRDS_EYE}
-    ;
+        BIRDS_EYE
+    };
 
     public Texture fireButtonTex;
     //the inital mode should mostly be AIM
@@ -390,24 +390,20 @@ public class BallScript : MonoBehaviour
         if (m_ballMode != BallMode.AIM && m_ballMode != BallMode.BIRDS_EYE &&
             m_ballMode != BallMode.FALL && m_ballMode != BallMode.ACTION)
         {
-            //Screen.lockCursor = false;
             Utility.LockCursor = false;
         }
         else
         {
             if (Time.timeScale == 1)
             {
-                //Screen.lockCursor = true;
                 Utility.LockCursor = true;
             }
         }
 
         if (Time.timeScale == 0)
         {
-            //Screen.lockCursor = false;
             Utility.LockCursor = false;
         }
-
 
         //if we are not init mode update the input for the ball
         if (m_ballMode != BallMode.INIT)
@@ -432,7 +428,6 @@ public class BallScript : MonoBehaviour
 
     void updateBallMode(float dt)
     {
-
         switch (m_ballMode)
         {
             case BallMode.ON_TEE:
@@ -604,8 +599,6 @@ public class BallScript : MonoBehaviour
         //check to see the coniditions are okay
         //both the balls linear velocity and angular velocity have to be below a certain threshold in order for us to consider it to be "stopped".
         //otherwise reset our stop time.
-
-        //Debug.Log("angVel"+ angVelocity + " minAngularVelocity " + minAngularVelocity );
 
         if (angVelocity < minAngularVelocity)
         {
@@ -899,10 +892,7 @@ public class BallScript : MonoBehaviour
     {
         if (BallMode.FALL != m_ballMode && m_won == false)
         {
-
-            Debug.Log("FALLOUT" + m_gameScript.getNomStrokes());
             //call the gamescripts fallout start
-
             m_gameScript.onFallOutStart();
 
             if (onWaterHitGO)
@@ -924,18 +914,15 @@ public class BallScript : MonoBehaviour
 
     public void respawn()
     {
-        //		Debug.Log("respawn");
         m_slowDown = false;
         if (m_gameScript.getNomStrokes() < 10)
         {
-
             //call the gamescripts respawn funciton
             m_gameScript.onAimMode();
         }
         //set the balls position and rotation back to the default
         transform.position = m_deafultPos;// + new Vector3(0,.1f,0);
         transform.rotation = m_deafultRot;
-        //		Debug.Log("MOVE TO DEFAULT" + m_ballMode + " pos + " + transform.position);
 
         if (m_won == false)
         {

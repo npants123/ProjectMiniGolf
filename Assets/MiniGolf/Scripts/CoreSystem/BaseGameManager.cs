@@ -129,7 +129,6 @@ public class BaseGameManager
         }
     }
 
-
     public delegate void OnPushString(string str);
 
     public static event OnPushString onPushString;
