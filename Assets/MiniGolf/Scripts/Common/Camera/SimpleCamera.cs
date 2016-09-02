@@ -68,14 +68,11 @@ public class SimpleCamera : MonoBehaviour
         transform.position = pos;
     }
 
-
     public void setTransform(Transform t)
     {
         m_target = t;
         updateOffset();
     }
-
-
 
     public void updateOffset()
     {
@@ -98,6 +95,5 @@ public class SimpleCamera : MonoBehaviour
         }
         Vector3 cameraPos = offset + m_initalPos;
         m_targetPos = cameraPos;
-
     }
 }

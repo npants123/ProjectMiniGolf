@@ -36,6 +36,10 @@ public class SubmitState : MonoBehaviour
     /// </summary>
     public AchivementEx[] achivements;
 
+    public Text usernameGT;
+    public Text totalScoreGT;
+    public Text totalParGT;
+    private bool m_oneTime = false;
     #endregion
 
     public void Start()
@@ -90,16 +94,12 @@ public class SubmitState : MonoBehaviour
 		GameCenterBinding.reportScore( playerScore,
 				leaderBoardIDs[Constants.getCourseIndex()] );
 #endif
-
     }
 
     public void submitScore()
     {
         int totalScore = m_gameScript.getTotalScore();
-
-
         submitScore(totalScore);
-
     }
 
     public void return2Main()
@@ -107,15 +107,8 @@ public class SubmitState : MonoBehaviour
         m_gameScript.returnToMain();
     }
 
-    public Text usernameGT;
-    public Text totalScoreGT;
-    public Text totalParGT;
-
-
-
     public  void Update()
     {
-
         int courseIndex = m_gameScript.getCourseIndex();
         string userName = playerName;
         int totalScore = m_gameScript.getTotalScore();
@@ -148,10 +141,5 @@ public class SubmitState : MonoBehaviour
         if (totalParGT)
             totalParGT.text = totalPar.ToString();
 
-    }
-
-    private bool m_oneTime = false;
-
-
-
+    }        
 }

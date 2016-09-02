@@ -1,4 +1,3 @@
-//#define PHOTON_MULTIPLAYER
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,8 +10,6 @@ using FMG;
 /// </summary>
 public class InitState : MonoBehaviour
 {
-
-
     #region variables
 
     public Text holeGT;
@@ -29,9 +26,7 @@ public class InitState : MonoBehaviour
 
     void Start()
     {
-
         m_gameScript = (GameScript)GameObject.FindObjectOfType(typeof(GameScript));
-
 
         #if PHOTON_MULTIPLAYER
 
@@ -47,7 +42,6 @@ public class InitState : MonoBehaviour
 				waitGO.SetActive(false);
 
 				startButtonGO.SetActive(true);
-
 			}
 
         #else
@@ -58,8 +52,6 @@ public class InitState : MonoBehaviour
         #endif
         int holeIndex = m_gameScript.getHoleNomUsingCourse();
         holeGT.text = holeIndex.ToString();
-
-
     }
 
     public  void OnEnable()
@@ -67,11 +59,9 @@ public class InitState : MonoBehaviour
         GolfManager.onStartHole += onShowStart;
     }
 
-
     public  void OnDisable()
     {
         GolfManager.onStartHole -= onShowStart;
-
     }
 
     public void onShowStart()
@@ -92,10 +82,8 @@ public class InitState : MonoBehaviour
         {
             waitGO.SetActive(false);
         }
-
         startButtonGO.SetActive(true);
         FMG.Constants.fadeInFadeOut(playState, introState);
         BaseGameManager.startGame();
-
     }
 }

@@ -27,7 +27,6 @@ public class VictoryTrigger : MonoBehaviour
         {
             m_ballScript = m_playerObj.GetComponent<BallScript>();// typeof(BallScript));
         }
-
     }
 
     public void OnTriggerEnter(Collider col)
@@ -41,11 +40,9 @@ public class VictoryTrigger : MonoBehaviour
             if (m_ballScript)
             {
                 m_ballScript.victory();
-
                 BaseGameManager.gameover(true);
                 GameManager.enterState(GameScript.State.SHOWSCORE.ToString());
             }
         }
     }
-
 }

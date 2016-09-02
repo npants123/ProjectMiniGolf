@@ -1,5 +1,3 @@
-//#define PHOTON_MULTIPLAYER
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,11 +8,7 @@ using FMG;
 /// </summary>
 public class ScoreState : MonoBehaviour
 {
-
     #region variables
-
-    ///a reference to the guitext
-
 
     /// <summary>
     /// the audio clip to play when the player gets a hole in one.
@@ -82,6 +76,10 @@ public class ScoreState : MonoBehaviour
     public GameObject playState;
     private AudioSource m_audioSource;
 
+    private int m_otherID = -1;
+    private float m_tick = 0;
+    public Text resultGT;
+    public Text totalGT;
     #endregion
 
     //	private string m_state;
@@ -153,12 +151,7 @@ public class ScoreState : MonoBehaviour
         if (startButtonGO)
             startButtonGO.SetActive(true);
     }
-
-    private int m_otherID = -1;
-    private float m_tick = 0;
-    public Text resultGT;
-    public Text totalGT;
-
+        
     public  void Update()
     {
         GameObject go;
@@ -186,22 +179,19 @@ public class ScoreState : MonoBehaviour
         int totalScore = m_gameScript.getTotalScore();
         int par = m_gameScript.getPar();
         int courseIndex = m_gameScript.getCourseIndex();
-
+       
         //we want to get the other players id.
         int otherID = Misc.getOtherPlayer();
         m_otherID = otherID;
         //the other score.
         if (total2GT)
             total2GT.text = GolfManager.getOtherScore(otherID).ToString();
-//		Debug.Log ("otherID" + GolfManager.getOtherScore(otherID).ToString());
 
         totalGT.text = totalScore.ToString();
 
         int handicap = nomStrokes - par;
         string term = getTerm(nomStrokes, handicap);
         resultGT.text = term;
-
-
 
         showScore();
 
@@ -235,7 +225,6 @@ public class ScoreState : MonoBehaviour
             }
         }
         return rc;
-
     }
 
     public string getTerm(int nomStrokes, int handicap)
@@ -262,7 +251,6 @@ public class ScoreState : MonoBehaviour
             }
         }
         return term;
-
     }
 
     public void showScore()
@@ -271,7 +259,6 @@ public class ScoreState : MonoBehaviour
         float py = transform.position.y;
         Rect r0 = new Rect(px + 0.09f, py + 0.35f, .825f, .3f);
         Rect r1 = r0;
-        //GUI.Box(GUIHelper.screenRect(r1),"",backgroundBoxStyle);
         float dx = r0.width / 9f;
         float dy = r0.height / 2f;
 
@@ -310,5 +297,4 @@ public class ScoreState : MonoBehaviour
             r1.y += dy * 1.5f;
         }
     }
-
 }

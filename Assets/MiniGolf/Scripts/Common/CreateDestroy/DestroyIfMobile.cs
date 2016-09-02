@@ -13,5 +13,4 @@ public class DestroyIfMobile : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }

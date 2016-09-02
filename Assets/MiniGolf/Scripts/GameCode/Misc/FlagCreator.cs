@@ -20,5 +20,4 @@ public class FlagCreator : MonoBehaviour
             Instantiate(flagPrefab, go.transform.position, Quaternion.identity);
         }
     }
-
 }

@@ -1,10 +1,8 @@
-﻿//#define PHOTON_MULTIPLAYER
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class DestroyOnFailedToConnect : MonoBehaviour
 {
-
     public void Awake()
     {
         #if PHOTON_MULTIPLAYER
@@ -17,12 +15,5 @@ public class DestroyOnFailedToConnect : MonoBehaviour
     public void OnFailedToConnectToPhoton()
     {
         Destroy(gameObject);
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

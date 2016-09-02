@@ -1,5 +1,3 @@
-#define MY_IPHONE_BUILD
-
 using System.Collections;
 using UnityEngine;
 
@@ -8,7 +6,6 @@ using UnityEngine;
 /// </summary>
 public class Joystick : MonoBehaviour
 {
-
     // A simple class for bounding how far the GUITexture will move
     class Boundary
     {

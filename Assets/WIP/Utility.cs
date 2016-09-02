@@ -1,7 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Utility
+// compile only for unity 5+
+#if (!(UNITY_4_6 || UNITY_4_5 || UNITY_4_3 || UNITY_4_2 || UNITY_4_1 || UNITY_4_0 || UNITY_3_5))
+using UnityEngine.SceneManagement;
+#endif
+
+public static class Utility
 {
 
     /// <summary>
@@ -24,6 +29,7 @@ public class Utility
             #if UNITY_EDITOR
             //Cursor.SetCursor((value ? InvisibleCursor : VisibleCursor), Vector2.zero, CursorMode.Auto);
             //Cursor.visible = value ? InvisibleCursor : VisibleCursor;
+            Cursor.visible = !value;
             #else
             // running in a build so toggling visibility should work fine
             Cursor.visible = !value;
@@ -35,6 +41,119 @@ public class Utility
             get { return Screen.lockCursor; }
             set { Screen.lockCursor = value; }
             #endif
+
+    }
+
+    /// <summary>
+    /// Tells you your curent scene's index number 'int' for the
+    /// current unity version
+    /// </summary>
+    public static int CurrentSceneIndex
+    {
+
+        // compile only for unity 5+
+        #if (!(UNITY_4_6 || UNITY_4_5 || UNITY_4_3 || UNITY_4_2 || UNITY_4_1 || UNITY_4_0 || UNITY_3_5))
+        get
+        {
+            return SceneManagerHelper.ActiveSceneBuildIndex;
+        }
+
+        #else
+        // compile only for unity 4.6 and older
+        get
+        {
+        return Application.loadedLevel;
+        }
+        #endif
+
+    }
+
+    /// <summary>
+    /// Tells you your curent scene's index number 'int' for the
+    /// current unity version
+    /// </summary>
+    public static string CurrentSceneName
+    {
+
+        // compile only for unity 5+
+        #if (!(UNITY_4_6 || UNITY_4_5 || UNITY_4_3 || UNITY_4_2 || UNITY_4_1 || UNITY_4_0 || UNITY_3_5))
+        get
+        {
+            return SceneManagerHelper.ActiveSceneName;
+        }
+        #else
+        // compile only for unity 4.6 and older
+        get
+        {
+        return Application.loadedLevelName;
+        }
+        #endif
+
+    }
+
+    /// <summary>
+    /// Load a scene by name you specify for the
+    /// current unity version
+    /// </summary>
+    public static void LoadScene(string sceneName)
+    {
+
+        // compile only for unity 5+
+        #if (!(UNITY_4_6 || UNITY_4_5 || UNITY_4_3 || UNITY_4_2 || UNITY_4_1 || UNITY_4_0 || UNITY_3_5))
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        #else
+        // compile only for unity 4.6 and older
+        {
+
+            Application.LoadScene(sceneName);
+        }
+        #endif
+
+    }
+
+    /// <summary>
+    /// Load a scene by index number you specify for the
+    /// current unity version
+    /// </summary>
+    public static void LoadScene(int sceneNumber)
+    {
+
+        // compile only for unity 5+
+        #if (!(UNITY_4_6 || UNITY_4_5 || UNITY_4_3 || UNITY_4_2 || UNITY_4_1 || UNITY_4_0 || UNITY_3_5))
+        {
+            SceneManager.LoadScene(sceneNumber);
+        }
+        #else
+        // compile only for unity 4.6 and older
+        {
+            Application.LoadScene(sceneNumber);
+        }
+        #endif
+
+    }
+
+    /// <summary>
+    /// Load a scene by index number you specify for the
+    /// current unity version
+    /// </summary>
+    public static int SceneCount
+    {
+
+        // compile only for unity 5+
+        #if (!(UNITY_4_6 || UNITY_4_5 || UNITY_4_3 || UNITY_4_2 || UNITY_4_1 || UNITY_4_0 || UNITY_3_5))
+        get
+        {
+            return SceneManager.sceneCount;
+        }
+        #else
+        // compile only for unity 4.6 and older
+        get
+        {
+        return Application.levelCount;
+        }
+        #endif
 
     }
 }

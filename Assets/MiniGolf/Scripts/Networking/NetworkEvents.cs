@@ -1,16 +1,11 @@
-﻿//#define PHOTON_MULTIPLAYER
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /*
  * Network events.
  */
-
 public class NetworkEvents : MonoBehaviour
 {
-
-
     public void OnEnable()
     {
         BaseGameManager.onButtonPress += onButtonPress;
@@ -40,11 +35,9 @@ public class NetworkEvents : MonoBehaviour
         if (str.Equals("start"))
         {
             //Application.LoadLevel(1);
-            SceneManager.LoadScene(1);
+            //SceneManager.LoadScene(1);
+            Utility.LoadScene(1);
         }
 #endif
     }
-
-
-
 }

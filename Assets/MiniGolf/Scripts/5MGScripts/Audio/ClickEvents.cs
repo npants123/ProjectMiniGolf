@@ -23,15 +23,8 @@ namespace FMG
                         aud.clip = ac;
                     }
                     ce.gameObject.AddComponent<AudioVolume>();
-
                 }
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        }         
     }
 }

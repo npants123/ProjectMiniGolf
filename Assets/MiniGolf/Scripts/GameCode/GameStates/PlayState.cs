@@ -1,5 +1,3 @@
-//#define PHOTON_MULTIPLAYER
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +8,6 @@ using FMG;
 /// </summary>
 public class PlayState : MonoBehaviour
 {
-
     #region variables
 
     //a ref of the gamescript
@@ -29,7 +26,6 @@ public class PlayState : MonoBehaviour
 
     void Start()
     {
-
         m_gameScript = (GameScript)GameObject.FindObjectOfType(typeof(GameScript));
         #if PHOTON_MULTIPLAYER
 
@@ -40,13 +36,11 @@ public class PlayState : MonoBehaviour
         #endif
     }
 
-
     void onPause()
     {
         GameManager.enterState(GameScript.State.PAUSE.ToString());
         GameConfig.setPaused(true);
         FMG.Constants.fadeInFadeOut(pauseState, playState);
-
     }
 
     public  void OnEnable()
@@ -78,8 +72,6 @@ public class PlayState : MonoBehaviour
         {
             holeGT.text = holeIndex.ToString();
         }
-
-
 
         //display the number of strokes.
         int nomStrokes = m_gameScript.getNomStrokes();
