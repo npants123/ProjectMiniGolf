@@ -126,7 +126,6 @@ public class Misc : MonoBehaviour
             postFix = "_bigger";
         }
         return postFix;
-
     }
 
     public static Font getFont(string fontName,
@@ -164,7 +163,6 @@ public class Misc : MonoBehaviour
         }
     }
 
-
     public static bool setMaxLevel(int maxLevel)
     {
         bool newMaxLevel = false;
@@ -199,7 +197,6 @@ public class Misc : MonoBehaviour
                 Destroy(g0, effectTTL);
             }
         }
-
     }
 
     public static Component getComponentInChildrenNotSelf(Transform t1, string scriptName)

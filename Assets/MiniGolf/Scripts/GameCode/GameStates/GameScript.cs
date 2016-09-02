@@ -42,8 +42,8 @@ public class GameScript : MonoBehaviour
         SHOWSCORE = 3,
         SUBMTSCORE = 4,
         WATER_HAZARD = 8,
-        ROLL = 16}
-    ;
+        ROLL = 16
+    };
 
     ///our current state
     public State m_state;
@@ -268,11 +268,9 @@ public class GameScript : MonoBehaviour
         GameManager.enterState(GameScript.State.PLAY.ToString());
     }
 
-
     //the ball has "stopped" add a stroke
     public void onStrokeEnd()
     {
-
         //if we have a ball and we have exceeded the maximum number of strokes set it a victory but indicate we didnt finish!
         if (currentNumberOfStrokes > (maxNomStrokes - 1))
         {
@@ -283,7 +281,6 @@ public class GameScript : MonoBehaviour
         {
             GameManager.enterState(GameScript.State.PLAY.ToString());
         }
-
     }
 
     //the ball is rolling!
@@ -318,6 +315,7 @@ public class GameScript : MonoBehaviour
             m_finishedHole = true;
         }
     }
+
     //take the maximum number of strokes
     public void takeMaximumNumberOfStrokes()
     {
