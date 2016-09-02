@@ -13,7 +13,6 @@ public class GolfEditor : EditorWindow
     private  GameObject[] m_tileObjects = new GameObject[25];
     private  GameObject m_ballObject;
     private  GameObject m_childObject;
-
     public   Texture[] m_textures;
     public Texture m_ballTexture;
     public string[] m_holes = new string[18];
@@ -38,12 +37,10 @@ public class GolfEditor : EditorWindow
         Debug.Log("OnDidOpenScene");
         init();
         Focus();
-
     }
 
     public void init()
     {
-
         for (int i = 0; i < m_tileObjects.Length; i++)
         {
             m_tileObjects[i] = Resources.Load("miniGolf/Tile" + (i + 1).ToString("00")) as GameObject;
@@ -57,7 +54,6 @@ public class GolfEditor : EditorWindow
             m_holes[i] = "Hole " + (i + 1);
             //m_par[i] = 3;
         }
-
 
         for (int i = 0; i < 18; i++)
         {
@@ -77,9 +73,7 @@ public class GolfEditor : EditorWindow
 
     private bool m_tileBool = true;
     private bool m_holeBool = true;
-
     public delegate void MyFunction(Texture[] textures,int n);
-
 
     //public string[] courses = {"Course Alpha","Course Beta","Course Gamma","Course Delta"};
     public int m_courseIndex = 0;
@@ -170,7 +164,6 @@ public class GolfEditor : EditorWindow
         {
             Debug.LogError("NO LIGHT");
         }
-
     }
 
     private string[] scenesToBake;
@@ -214,7 +207,6 @@ public class GolfEditor : EditorWindow
         //m_holeBool = EditorGUI.Foldout(GUIHelper.screenRect(r),m_holeBool,"Holes");
         //r.y+=r.height;
 
-
         if (m_holeBool)
         {
             r.width = .2f;
@@ -248,13 +240,11 @@ public class GolfEditor : EditorWindow
         }
         //r.x=0;
 
-
         r.y += .2f;
         r.x = 0;
         r.width = .2f;
         r.height = 0.05f;
         m_tileBool = EditorGUI.Foldout(GUIHelper.screenRect(r), m_tileBool, "Tiles");
-
 
         if (m_tileBool)
         {
@@ -601,14 +591,10 @@ public class GolfEditor : EditorWindow
                         r1.height = 0.05f;
                         //	m_par[n] = EditorGUI.IntField(GUIHelper.screenRect(r1),m_par[n]);
                     }
-
-
                 }
                 else
                 {
-
                     badTextures = true;
-
                 }
                 n++;
                 r.x += r.width;

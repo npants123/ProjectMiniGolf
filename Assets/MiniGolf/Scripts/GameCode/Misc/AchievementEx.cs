@@ -1,4 +1,3 @@
-//#define GOT_PRIME31_GAMECENTER
 using System.Collections;
 using UnityEngine;
 
@@ -25,7 +24,6 @@ public class AchivementEx
     /// The achivement ID
     /// </summary>
     public string achivementID = "";
-
 
     public static AchivementEx[] getAchivements(AchivementEx[] achivements,
                                              int score, int courseIndex)

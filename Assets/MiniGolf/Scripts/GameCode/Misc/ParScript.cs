@@ -1,4 +1,3 @@
-//#define PHOTON_MULTIPLAYER
 using System.Collections;
 using UnityEngine;
 

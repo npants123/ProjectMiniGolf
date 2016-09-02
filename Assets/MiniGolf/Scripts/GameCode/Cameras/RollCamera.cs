@@ -72,12 +72,9 @@ public class RollCamera : MonoBehaviour
             //	Camera camera0 = Camera.mainCamera;
             if (m_ballScript)
             {
-
-
                 updateLookAt();
 
             }
         }
     }
-
 }

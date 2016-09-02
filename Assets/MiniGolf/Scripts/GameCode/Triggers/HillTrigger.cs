@@ -6,7 +6,6 @@ using UnityEngine;
 /// </summary>
 public class HillTrigger : MonoBehaviour
 {
-
     /// <summary>
     /// The draw gizmos.
     /// </summary>

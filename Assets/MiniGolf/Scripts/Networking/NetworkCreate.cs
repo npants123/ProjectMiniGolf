@@ -1,5 +1,4 @@
-﻿//#define PHOTON_MULTIPLAYER
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class NetworkCreate : MonoBehaviour
@@ -38,8 +37,6 @@ public class NetworkCreate : MonoBehaviour
 
     public void init()
     {
-
-
         //if were failed to connect to photon we used our scene created object, so destroy it normally.
         if (K_CONNECTMANAGER)
         {
@@ -69,7 +66,6 @@ public class NetworkCreate : MonoBehaviour
     //we failed to connect to photon
     //so lets use our connectmanager -- photonview that was created in the scene.
 
-
     /// <summary>
     /// We joined the lobby, lets make a room for only us.
     /// </summary>
@@ -85,7 +81,6 @@ public class NetworkCreate : MonoBehaviour
     /// </summary>
     void OnJoinedRoom()
     {
-
         if (connectManager)
         {
             K_CONNECTMANAGER = connectManager;
@@ -96,5 +91,4 @@ public class NetworkCreate : MonoBehaviour
         Destroy(gameObject);
     }
     #endif
-
 }

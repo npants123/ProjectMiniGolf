@@ -16,7 +16,6 @@ namespace FMG
             updateVolume();
         }
 
-
         public void updateVolume()
         {
             if (GetComponent<AudioSource>())

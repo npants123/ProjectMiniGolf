@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Take screenshot.
@@ -22,7 +21,7 @@ public class TakeScreenshot : MonoBehaviour
             int index = screenNom;
 
             //fn += Application.loadedLevelName + index.ToString() + ".png";
-            fn += SceneManagerHelper.ActiveSceneName + index.ToString() + ".png";
+            fn += Utility.CurrentSceneName + index.ToString() + ".png";
             Debug.Log("captureScreenshot:" + fn);
             Application.CaptureScreenshot(fn);
             screenNom++;

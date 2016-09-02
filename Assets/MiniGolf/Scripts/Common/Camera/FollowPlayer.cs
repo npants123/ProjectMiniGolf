@@ -45,9 +45,6 @@ public class FollowPlayer : MonoBehaviour
         GameObject go = GameObject.Find(playerTag);
         if (go)
         {
-            Debug.Log("Startfound");
-
-
             m_targetTransform = go.transform;
         }
     }
@@ -88,8 +85,5 @@ public class FollowPlayer : MonoBehaviour
         }
 
         transform.position = offset;
-
-
-
     }
 }

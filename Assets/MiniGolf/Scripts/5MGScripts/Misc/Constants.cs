@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace FMG
 {
-
     public class Constants  : MonoBehaviour
     {
         public static float getAudioVolume()
@@ -39,11 +38,8 @@ namespace FMG
                 {
                     animator.SetBool("SlideOut", slideOut);
                 }
-
             }
-
         }
-
 
         public static void fadeInFadeOut(GameObject go1, GameObject go2)
         {
@@ -59,7 +55,6 @@ namespace FMG
 
             slideOut(go1, true);
             slideOut(go2, false);
-
         }
     }
 }

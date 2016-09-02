@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace FMG
 {
@@ -10,8 +9,7 @@ namespace FMG
 
         public void onClick()
         {
-            //Application.LoadLevel(levelIndex);
-            SceneManager.LoadScene(levelIndex);
+            Utility.LoadScene(levelIndex);
         }
     }
 }

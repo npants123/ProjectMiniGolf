@@ -17,19 +17,16 @@ public class WaterTrigger : MonoBehaviour
 
     public void Start()
     {
-
         //get the player object
         GameObject go = GameObject.FindWithTag("Player");
         if (go)
         {
-
             //save a ref of the players gameobject
             m_playerObj = go;
 
             //get the players ballscript
             m_ballScript = m_playerObj.GetComponent<BallScript>();
         }
-
     }
 
     public void OnTriggerEnter(Collider col)
@@ -44,5 +41,4 @@ public class WaterTrigger : MonoBehaviour
             }
         }
     }
-
 }

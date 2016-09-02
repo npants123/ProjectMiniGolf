@@ -22,7 +22,6 @@ public class InitCamera : MonoBehaviour
     /// </summary>
     public bool m_on = false;
 
-
     public void OnEnable()
     {
         GameManager.onEnterState += onEnterState;
@@ -33,7 +32,6 @@ public class InitCamera : MonoBehaviour
     {
         GameManager.onEnterState -= onEnterState;
         BaseGameManager.onGameStart -= onGameStart;
-
     }
 
     public void onGameStart()
@@ -43,8 +41,6 @@ public class InitCamera : MonoBehaviour
 
     public void onEnterState(string stateID)
     {
-
-
         if (stateID.Equals(GameScript.State.INIT.ToString()) ||
         stateID.Equals(GameScript.State.SUBMTSCORE.ToString()) ||
         stateID.Equals(GameScript.State.SHOWSCORE.ToString()))
@@ -66,12 +62,10 @@ public class InitCamera : MonoBehaviour
             if (ballScript && camera0)
             {
                 Vector3 pos = ballScript.getPos();
-
                 camera0.transform.position = pos + Quaternion.AngleAxis(m_angle, Vector3.up) * cameraOffset;
                 camera0.transform.LookAt(pos);
             }
             m_angle += Time.deltaTime * spinSpeed;
         }
     }
-
 }

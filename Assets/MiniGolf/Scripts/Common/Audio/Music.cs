@@ -18,7 +18,6 @@ public class Music : MonoBehaviour
         createMusic();
         if (K_AUDIO != null)
         {
-
             if (musicClip != K_AUDIO.clip)
             {
                 K_AUDIO.clip = musicClip;
@@ -41,5 +40,4 @@ public class Music : MonoBehaviour
             DontDestroyOnLoad(K_MUSIC);
         }
     }
-
 }

@@ -7,10 +7,8 @@ namespace FMG
 {
     public class ButtonToggle : MonoBehaviour
     {
-
         //the array of buttons.
         public Button[] buttons;
-
 
         //the selected button
         public Button selectedButton;
@@ -20,7 +18,6 @@ namespace FMG
 
         //the selected color.
         public Color selectedColor = Color.green;
-
 
         private int m_selectedIndex = 0;
 
@@ -68,15 +65,11 @@ namespace FMG
                 selectedButton = buttons[index];
             }
 
-
-
-
             if (selectedButton)
             {
                 selectedButton.image.color = selectedColor;
             }
         }
-
 
         void Update()
         {
@@ -95,8 +88,6 @@ namespace FMG
                     PointerEventData pointer = new PointerEventData(EventSystem.current);
                     if (selectedButton != null)
                     {
-                        Debug.Log("ButtonToggle:PRESS");
-
                         ExecuteEvents.Execute(selectedButton.gameObject, pointer, ExecuteEvents.pointerClickHandler);
                     }
                 }

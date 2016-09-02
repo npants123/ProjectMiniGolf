@@ -9,7 +9,6 @@ namespace FMG
         public Text graphicsText;
         public string graphicsPrefix = "Graphics: ";
 
-
         public Text audioText;
         public string audioPrefix = "Audio: ";
         public string audioOff = "Off";
@@ -32,9 +31,7 @@ namespace FMG
             else
             {
                 audioText.text = audioPrefix + audioOn;
-
             }
-
         }
 
         public void onCommand(string str)
