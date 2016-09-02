@@ -11,7 +11,6 @@ public class AudioVolume : MonoBehaviour
     /// </summary>
     public float volScalar = 1f;
 
-
     /// <summary>
     /// Use update -- we probably dont want to use that if the volume is not changing -- IE usually only in main menu
     /// </summary>/
@@ -19,7 +18,6 @@ public class AudioVolume : MonoBehaviour
 
     void Awake()
     {
-
         if (GetComponent<AudioSource>())
         {
             GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("AudioVolume", 1) * volScalar;
@@ -31,7 +29,6 @@ public class AudioVolume : MonoBehaviour
         if (GetComponent<AudioSource>() && useUpdate)
         {
             GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("AudioVolume", 1) * volScalar;
-
         }
     }
 }

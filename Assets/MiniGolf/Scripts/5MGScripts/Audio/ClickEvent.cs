@@ -11,7 +11,6 @@ namespace FMG
 
         public virtual void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("ClickEvent");
             if (GetComponent<AudioSource>())
                 GetComponent<AudioSource>().Play();
         }

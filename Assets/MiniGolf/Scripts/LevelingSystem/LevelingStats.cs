@@ -9,7 +9,6 @@ public class LevelingStats : MonoBehaviour
         TOTAL_TIES,
         TOTAL_LOSES,
         TOTAL_GAMES}
-
     ;
 
     public Stats stats;
@@ -22,6 +21,4 @@ public class LevelingStats : MonoBehaviour
             GetComponent<GUIText>().text = prefix + PlayerPrefs.GetInt(stats.ToString(), 0).ToString();
         }
     }
-
-
 }

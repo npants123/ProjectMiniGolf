@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 namespace FMG
 {
     public class MainMenu : MonoBehaviour
@@ -15,7 +14,6 @@ namespace FMG
         public bool useExitButton = true;
 
         public GameObject exitButton;
-
 
         public void Awake()
         {
@@ -68,8 +66,6 @@ namespace FMG
             {
                 Constants.fadeInFadeOut(optionsMenu, mainMenu);
             }
-
-
         }
     }
 }

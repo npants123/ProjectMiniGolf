@@ -6,7 +6,6 @@ using UnityEngine;
 /// </summary>
 public class ShadowFollow : MonoBehaviour
 {
-
     private Transform m_playerTransform;
 
     /// <summary>
@@ -47,7 +46,5 @@ public class ShadowFollow : MonoBehaviour
             transform.position = pos;
             transform.rotation = rot;
         }
-
-
     }
 }

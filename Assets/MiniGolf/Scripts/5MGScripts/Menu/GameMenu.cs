@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace FMG
 {
@@ -28,7 +27,7 @@ namespace FMG
             {
 
                 //useFadeOut(Application.loadedLevel);
-                useFadeOut(SceneManagerHelper.ActiveSceneBuildIndex);
+                useFadeOut(Utility.CurrentSceneIndex);
             }
             if (str.Equals("Unapuse"))
             {
@@ -50,21 +49,16 @@ namespace FMG
             if (str.Equals("Next"))
             {
                 //int next = Application.loadedLevel+1;
-                int next = SceneManagerHelper.ActiveSceneBuildIndex + 1;
+                int next = Utility.CurrentSceneIndex + 1;
                 Debug.Log("next " + next);
                 useFadeOut(next);
             }
-
         }
 
         public void useFadeOut(int sceneToLoad)
         {
             Time.timeScale = 1;
-
-
-            //Application.LoadLevel(sceneToLoad);
-            SceneManager.LoadScene(sceneToLoad);
+            Utility.LoadScene(sceneToLoad);
         }
-
     }
 }

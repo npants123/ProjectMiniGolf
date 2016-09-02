@@ -6,7 +6,6 @@ using UnityEngine;
 /// </summary>
 public class WaterCamera : MonoBehaviour
 {
-
     /// <summary>
     /// The spin speed.
     /// </summary>
@@ -16,7 +15,6 @@ public class WaterCamera : MonoBehaviour
     /// The camera offset.
     /// </summary>
     public Vector3 cameraOffset = new Vector3(30, 30, 30);
-
 
     private float m_angle = 0f;
 
@@ -69,5 +67,4 @@ public class WaterCamera : MonoBehaviour
             m_angle += Time.deltaTime * spinSpeed;
         }
     }
-
 }

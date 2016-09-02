@@ -149,8 +149,6 @@ public class BaseGameScript : MonoBehaviour
         BaseGameManager.onGameOver += onGameOver;
         BaseGameManager.onGameStart += onGameStart;
         BaseGameManager.onAddPoints += onAddPoints;
-
-
     }
 
     public virtual void OnDisable()
@@ -160,7 +158,6 @@ public class BaseGameScript : MonoBehaviour
         BaseGameManager.onGameOver -= onGameOver;
         BaseGameManager.onGameStart -= onGameStart;
         BaseGameManager.onAddPoints -= onAddPoints;
-
         BaseGameManager.onPushString -= onPushString;
     }
 
@@ -196,9 +193,7 @@ public class BaseGameScript : MonoBehaviour
         Time.timeScale = 1;
         m_started = true;
     }
-
-
-
+        
     public void pushText(string str)
     {
 
@@ -228,8 +223,6 @@ public class BaseGameScript : MonoBehaviour
         hideGUITexts();
         m_gameover = true;
         m_victory = vic;
-
-
 
         if (vic)
         {

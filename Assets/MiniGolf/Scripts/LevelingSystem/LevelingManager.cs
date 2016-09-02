@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class LevelingManager : MonoBehaviour
 {
-
     public static void increasePlayerPrefs(string id)
     {
         int index = PlayerPrefs.GetInt(id, 0);
@@ -14,7 +13,6 @@ public class LevelingManager : MonoBehaviour
     {
         increasePlayerPrefs(LevelingStats.Stats.TOTAL_WINS.ToString());
         increasePlayerPrefs(prefix);
-
     }
 
     /// <summary>

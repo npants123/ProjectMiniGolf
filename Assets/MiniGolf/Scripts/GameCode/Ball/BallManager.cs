@@ -6,7 +6,6 @@ using UnityEngine;
 /// </summary>
 public class BallManager : MonoBehaviour
 {
-
     public delegate void EnterState(string stateID);
 
     public static event EnterState onEnterState;

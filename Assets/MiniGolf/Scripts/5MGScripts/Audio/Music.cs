@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace FMG
 {
-
     /// <summary>
     /// Music.
     /// </summary>
@@ -44,6 +43,5 @@ namespace FMG
                 DontDestroyOnLoad(K_MUSIC);
             }
         }
-
     }
 }

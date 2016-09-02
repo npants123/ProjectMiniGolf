@@ -30,7 +30,6 @@ public class Creator : MonoBehaviour
     {
         POINT,
         SPHERE}
-
     ;
 
     public SpawnType spawnType;
@@ -68,8 +67,6 @@ public class Creator : MonoBehaviour
             {
                 spawnPos.z = 0;
             }
-
-
 
             if (objToSpawn)
             {

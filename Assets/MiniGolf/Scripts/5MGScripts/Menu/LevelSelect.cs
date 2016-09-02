@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace FMG
@@ -29,7 +28,7 @@ namespace FMG
 
             int cellsPerPage = nomPerCol * nomPerRow;
             //int tmpNomLevels = Application.levelCount-1-Application.loadedLevel;
-            int tmpNomLevels = SceneManager.sceneCount - 1 - SceneManagerHelper.ActiveSceneBuildIndex;
+            int tmpNomLevels = Utility.SceneCount - 1 - Utility.CurrentSceneIndex;
 
             while (tmpNomLevels > 0)
             {
@@ -50,8 +49,6 @@ namespace FMG
             m_buttonToggle = gameObject.GetComponent<ButtonToggle>();
             m_orgButtons = m_buttonToggle.buttons;
             changePage(m_pages[0]);
-
-
         }
 
         public void onCommand(string str)
@@ -67,7 +64,6 @@ namespace FMG
 
                 m_pages[levelIndex].SetActive(true);
                 changePage(m_pages[levelIndex]);
-
             }
 
             if (str.Equals("LevelSelectPrev"))
@@ -112,7 +108,6 @@ namespace FMG
             newPage.transform.localPosition = Vector3.zero;
             newPage.transform.localScale = new Vector3(1, 1, 1);
 
-
             Vector3 pos = startPos;
             for (int i = 0; i < nomPerRow; i++)
             {
@@ -120,7 +115,7 @@ namespace FMG
                 for (int j = 0; j < nomPerCol; j++)
                 {
                     //if (n < Application.levelCount - Application.loadedLevel)
-                    if (n < SceneManager.sceneCount - SceneManagerHelper.ActiveSceneBuildIndex)
+                    if (n < Utility.SceneCount - Utility.CurrentSceneIndex)
                     {
                         GameObject newObject = (GameObject)Instantiate(levelButton, Vector3.zero, Quaternion.identity);
                         newObject.transform.parent = newPage.transform;
@@ -139,7 +134,6 @@ namespace FMG
                         text.text = n.ToString();
                         pos.x += offset.x;
 
-
                         RectTransform rt = newObject.GetComponent<RectTransform>();
                         rt.localPosition = pos;
                         rt.localScale = new Vector3(1, 1, 1);
@@ -148,11 +142,7 @@ namespace FMG
                 }
                 pos.y += offset.y;
             }
-
-
             return newPage;
         }
-
-
     }
 }

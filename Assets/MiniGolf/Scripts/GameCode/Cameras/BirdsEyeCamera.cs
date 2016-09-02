@@ -11,7 +11,6 @@ public class BirdsEyeCamera : MonoBehaviour
     /// </summary>
     public bool m_on = false;
 
-
     /// <summary>
     /// The rotate towards time.
     /// </summary>
@@ -22,8 +21,6 @@ public class BirdsEyeCamera : MonoBehaviour
     /// The camera offset.
     /// </summary>
     public Vector3 cameraOffset = new Vector3(0, 45f, 0);
-
-
 
     public void OnEnable()
     {
@@ -89,7 +86,5 @@ public class BirdsEyeCamera : MonoBehaviour
                 rotateTransCam(dt);
             }
         }
-
-
     }
 }

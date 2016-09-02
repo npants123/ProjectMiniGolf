@@ -51,14 +51,12 @@ public class AimCamera : MonoBehaviour
     {
         BallManager.onEnterState += onEnterState;
         BaseGameManager.onGameStart += turnOn;
-
     }
 
     public void OnDisable()
     {
         BallManager.onEnterState -= onEnterState;
         BaseGameManager.onGameStart -= turnOn;
-
     }
 
     public void onEnterState(string stateID)
@@ -101,15 +99,12 @@ public class AimCamera : MonoBehaviour
             {
                 rotateCam(dt);
                 raycastCamera();
-
             }
         }
         else
         {
             raycastClearCamera();
         }
-
-
     }
 
     public bool isNotAiming()
@@ -149,7 +144,6 @@ public class AimCamera : MonoBehaviour
                 Color col = renderer.material.color;
                 col.a = alphaColor;
                 renderer.material.color = col;
-
             }
 
         }
@@ -179,14 +173,12 @@ public class AimCamera : MonoBehaviour
             }
             m_cleared = true;
         }
-
     }
 
     void rotateCam(float dt)
     {
         BallScript ballScript = (BallScript)GameObject.FindObjectOfType(typeof(BallScript));
         Camera camera0 = Camera.main;
-
 
         if (ballScript && camera0)
         {
@@ -209,7 +201,6 @@ public class AimCamera : MonoBehaviour
         {
             Quaternion quat = ballScript.transform.rotation;
             Vector3 pos = ballScript.getPos();
-
             Vector3 cameraPos = pos + quat * cameraOffset;
             Vector3 targetPos = pos + quat * targetOffset;
 
@@ -237,5 +228,4 @@ public class AimCamera : MonoBehaviour
             //camera0.transform.LookAt( targetPos );
         }
     }
-
 }
