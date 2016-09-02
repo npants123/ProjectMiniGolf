@@ -42,7 +42,7 @@ public class GettingStarted : EditorWindow
             get { return "SHOW_GETTING_STARTED_WINDOW" ; }
         }
 
-        [MenuItem("Tools/MiniGolf/Getting started", false, 1)] // Always at bottom
+        [MenuItem("Tools/Mini Golf/Getting started", false, 1)] // Always at bottom
         public static void ShowWindow()
         {
             _showOnStart = EditorPrefs.GetBool(editorPrefsKey, true);
@@ -102,7 +102,7 @@ public class GettingStarted : EditorWindow
             });
 
             //DrawBox(2, 0, "Forums", "Check out the Inventory Pro forums for some community power.", _forumIcon, () =>
-            DrawBox(2, 0, "Forums", "Check out the Inventory Pro forums for some community power.", null, () =>
+            DrawBox(2, 0, "Forums", "Check out the forums for some community power.", null, () =>
             {
                 Application.OpenURL("http://forum.devdog.nl");
             });
@@ -114,12 +114,12 @@ public class GettingStarted : EditorWindow
             });
 
             //DrawBox(4, 0, "Rate / Review", "Like Inventory Pro? Share the experience :)", _reviewIcon, () =>
-            DrawBox(4, 0, "Rate / Review", "Like Inventory Pro? Share the experience :)", null, () =>
+            DrawBox(4, 0, "Rate / Review", "Like Us? Share the experience :)", null, () =>
             {
                 Application.OpenURL("https://www.assetstore.unity3d.com/en/content/31226");
             });
 
-            var toggle = GUI.Toggle(new Rect(10, window.minSize.y - 20, window.minSize.x - 10, 20), _showOnStart, "Show Inventory Pro getting started on start.");
+            var toggle = GUI.Toggle(new Rect(10, window.minSize.y - 20, window.minSize.x - 10, 20), _showOnStart, "Show Getting started on start.");
             if (toggle != _showOnStart)
             {
                 _showOnStart = toggle;

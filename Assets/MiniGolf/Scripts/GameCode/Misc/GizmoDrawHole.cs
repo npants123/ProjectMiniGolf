@@ -16,7 +16,6 @@ public class GizmoDrawHole : MonoBehaviour
     /// </summary>
     public Color color = new Color(0.5f, 0.5f, 1f, 0.5f);
 
-
     /// <summary>
     /// The gizmo size.
     /// </summary>

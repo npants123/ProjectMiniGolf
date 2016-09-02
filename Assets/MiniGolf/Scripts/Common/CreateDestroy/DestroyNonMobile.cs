@@ -6,7 +6,6 @@ using UnityEngine;
 /// </summary>
 public class DestroyNonMobile : MonoBehaviour
 {
-
     // Use this for initialization
     void Start()
     {
@@ -15,5 +14,4 @@ public class DestroyNonMobile : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }

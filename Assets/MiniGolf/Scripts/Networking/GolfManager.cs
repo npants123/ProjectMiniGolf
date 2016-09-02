@@ -47,8 +47,7 @@ public class GolfManager
             onEveryoneFinishedHole();
         }
     }
-
-
+        
     /// <summary>
     /// Called when the player finishes the hole.
     /// </summary>

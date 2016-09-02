@@ -1,4 +1,3 @@
-//#define PHOTON_MULTIPLAYER
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +6,10 @@ public class ConnectManager : MonoBehaviour
 {
     #if PHOTON_MULTIPLAYER
     private PhotonView m_photonView;
-
     /// <summary>
     /// The maximum number of players we want in the rooms.
     /// </summary>
     private static int MAX_NOM_PLAYERS = 2;
-
 
     /// <summary>
     /// The game version.
@@ -27,7 +24,6 @@ public class ConnectManager : MonoBehaviour
     /// The number of players that are finished.
     /// </summary>
     private int m_playerFinishedCount = 0;
-
 
     /// A dictionary to hold the players score.
     private Dictionary<int,int> m_playerScores = new Dictionary<int, int>();
@@ -44,11 +40,7 @@ public class ConnectManager : MonoBehaviour
     //have we started the hole
     private bool m_startedHole = false;
 
-
-
 #region shotclock Variables
-
-
     //do want to use the shot clock
     public bool useShotClock = true;
     /// The maximum time you give the players beefore they get a max score.
@@ -57,12 +49,7 @@ public class ConnectManager : MonoBehaviour
     public int shotClock = 60;
     //the gui text for the shot clock
     private GUIText m_shoClockGUIText;
-
-
-
 #endregion
-
-
 
     public static ConnectManager Instance
     {
@@ -109,13 +96,11 @@ public class ConnectManager : MonoBehaviour
         GolfManager.onSetPlayersScore -= onSetPlayersScore;
     }
 
-
     //someone loaded the level, was it the master client, if so lets move to the next one.
     void OnLevelWasLoaded(int level)
     {
         if (level > 0)
         {
-
             if (PhotonNetwork.isMasterClient)
             {
                 m_photonView.RPC("startHoleRPC", PhotonTargets.AllBuffered);
@@ -157,7 +142,6 @@ public class ConnectManager : MonoBehaviour
 
         while (m_shotClock > 0)
         {
-
             yield return new WaitForSeconds(1);
             m_shotClock--;
             m_photonView.RPC("setTimeRPC", PhotonTargets.All, m_shotClock);
@@ -182,7 +166,6 @@ public class ConnectManager : MonoBehaviour
         }
     }
 
-
     [PunRPC]
     public void increaseFinishCountRPC()
     {
@@ -192,7 +175,6 @@ public class ConnectManager : MonoBehaviour
         //if we are the master client lets increase our playerfinished count.
         if (PhotonNetwork.isMasterClient)
         {
-
             //if our player finished count is to the numbers of players in the room, then we can trigger the event
             if (m_playerFinishedCount == PhotonNetwork.room.playerCount)
             {
@@ -221,11 +203,6 @@ public class ConnectManager : MonoBehaviour
         m_playerFinishedCount = 0;
 
     }
-
-
-
-
-
 
     /// <summary>
     /// Handles the single player.
@@ -269,7 +246,6 @@ public class ConnectManager : MonoBehaviour
         connect();
     }
 
-
     /// <summary>
     /// Attempt to join a random room
     /// </summary>
@@ -311,7 +287,6 @@ public class ConnectManager : MonoBehaviour
         }
     }
 
-
     public void handleMultiplayerStart()
     {
         //if we have a photonview, and we have are the master client lets tell all players that we want to start -- using an RPC call.
@@ -352,7 +327,6 @@ public class ConnectManager : MonoBehaviour
     {
     }
 
-
     /// We got disconnected from photon, you can do what you want here but we are going to keep it simple we are simply going to reload this level.
     void OnDisconnectedFromPhoton()
     {
@@ -363,8 +337,6 @@ public class ConnectManager : MonoBehaviour
             //we got disconnected, lets simply kick him back to the main menu.
             loadLevel(0);
         }
-
-
     }
 
     public void OnPhotonPlayerDisconnected(PhotonPlayer player)
@@ -378,8 +350,6 @@ public class ConnectManager : MonoBehaviour
                 loadLevel(0);
             }
         }
-
-
     }
 
     public void onLoadLevel(int level, int playerID)
@@ -397,7 +367,6 @@ public class ConnectManager : MonoBehaviour
         if (PhotonNetwork.offlineMode == false)
         {
             PhotonNetwork.isMessageQueueRunning = false;
-
             PhotonNetwork.LoadLevel(index);
         }
         else

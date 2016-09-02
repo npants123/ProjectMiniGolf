@@ -1,7 +1,5 @@
-//#define PHOTON_MULTIPLAYER
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// The mini golf gameScript.
@@ -36,7 +34,6 @@ public class GameScript : MonoBehaviour
     ///a ref to the ballscript
     private BallScript m_ballScript;
 
-
     public enum State
     {
         INIT = 0,
@@ -46,14 +43,10 @@ public class GameScript : MonoBehaviour
         SUBMTSCORE = 4,
         WATER_HAZARD = 8,
         ROLL = 16}
-
     ;
 
     ///our current state
     public State m_state;
-
-    ///the gui skin to use
-    public GUISkin guiSkin0;
 
     ///the list of states -- should correspond with the gamescript states.
     public GameObject[] states;
@@ -71,14 +64,13 @@ public class GameScript : MonoBehaviour
     private static int m_totalPar = 0;
     //	private int m_totalScore;
 
+    private GameObject m_scoreStateGO;
     #endregion
-
 
     void OnEnable()
     {
         GameManager.onEnterState += onEnterState;
         GolfManager.onTimesUp += onTimesUp;
-
         BaseGameManager.onGameStart += startGame;
     }
 
@@ -102,14 +94,11 @@ public class GameScript : MonoBehaviour
     {
         return m_par;
     }
-
-    private GameObject m_scoreStateGO;
-
+        
     public void Awake()
     {
         m_par = 3;
         RenderSettings.ambientLight = ambientColor;
-
 
         //unpause the game
         GameConfig.setPaused(false);
@@ -120,7 +109,7 @@ public class GameScript : MonoBehaviour
         }
         //if its levle 1 reset the scores.
         int holeIndex = getHoleNomUsingCourse();
-//		Debug.Log("holeIndex"+holeIndex);
+
         if (holeIndex == 1)
         {
             setScoreForHole(getHoleNomUsingCourse(), currentNumberOfStrokes);
@@ -145,7 +134,6 @@ public class GameScript : MonoBehaviour
             setParForHole(getHoleNomUsingCourse(), m_par);
         }
 
-
         //get a ref to the gamescript!
         GameObject go = GameObject.FindWithTag("Player");
         if (go)
@@ -157,19 +145,16 @@ public class GameScript : MonoBehaviour
 
     }
 
-
     public void Update()
     {
         bool paused = GameConfig.getPaused();
-
 
         if (m_state == State.PLAY || m_state == State.PAUSE)
         {
             if (paused == true)
             {
-
                 m_state = State.PAUSE;
-                Screen.lockCursor = false;
+                Utility.LockCursor = false;
             }
             else
             {
@@ -190,20 +175,14 @@ public class GameScript : MonoBehaviour
 
     public void victory()
     {
-//			Debug.Log ("victory: m_state: "+m_state);
+
         if (m_state == State.PAUSE || m_state == State.PLAY)
         {
-//			m_masterCamera.setState( MasterCamera.State.END);
             setScoreForHole(getHoleNomUsingCourse(), currentNumberOfStrokes);
             m_state = State.SHOWSCORE;
 
-//			Debug.Log ("enterScoreState" + m_scoreStateGO.name);
-
-//			MenuStateManager.enterStateUsingGameObject(m_scoreStateGO);
             finishHole();
 
-
-//			Debug.Log ("victory"+currentNumberOfStrokes);
             if (m_failedToGetInHole == false)
             {
                 if (winAC)
@@ -225,24 +204,14 @@ public class GameScript : MonoBehaviour
         }
     }
 
-    public void OnGUI()
-    {
-        GUI.skin = guiSkin0;
-
-
-    }
-
     //return to the main menu
     public void returnToMain()
     {
         #if PHOTON_MULTIPLAYER
-
-			GolfManager.loadLevel(0,PhotonNetwork.player.ID);
+        GolfManager.loadLevel(0,PhotonNetwork.player.ID);
         #else
-        //Application.LoadLevel( 0 );
-        SceneManager.LoadScene(0);
+        Utility.LoadScene(0);
         #endif
-
     }
 
     //give up!
@@ -264,7 +233,6 @@ public class GameScript : MonoBehaviour
     //start the game.
     public void startGame()
     {
-//		m_masterCamera.setState( MasterCamera.State.ON_TEE);
         m_ballScript.setMode(BallScript.BallMode.AIM);
         m_state = State.PLAY;
     }
@@ -272,7 +240,6 @@ public class GameScript : MonoBehaviour
     //the ball has been placed on the tee, now move into aim mode.
     public void placeBall()
     {
-//		m_masterCamera.setState( MasterCamera.State.AIM);
         m_ballScript.setMode(BallScript.BallMode.AIM);
         m_state = State.PLAY;
     }
@@ -285,11 +252,9 @@ public class GameScript : MonoBehaviour
         {
             //change the master camera to water state
             GameManager.enterState(GameScript.State.WATER_HAZARD.ToString());
-            Debug.Log("EnterWater");
             //if there is a fallout audio clip play it.
             if (GetComponent<AudioSource>() && falloutAC)
             {
-                Debug.Log("EnterWater2");
                 GetComponent<AudioSource>().PlayOneShot(falloutAC);
             }
         }
@@ -313,7 +278,6 @@ public class GameScript : MonoBehaviour
         {
             m_failedToGetInHole = true;
             GameManager.enterState(GameScript.State.SHOWSCORE.ToString());
-
         }
         else
         {
@@ -322,11 +286,9 @@ public class GameScript : MonoBehaviour
 
     }
 
-
     //the ball is rolling!
     public void onRollMode()
     {
-//		m_masterCamera.setState( MasterCamera.State.ROLL );
         currentNumberOfStrokes++;
         int courseLevel = getHoleNomUsingCourse();
 
@@ -348,7 +310,7 @@ public class GameScript : MonoBehaviour
         if (m_finishedHole == false)
         {
             #if PHOTON_MULTIPLAYER
-					GolfManager.setPlayersScore(PhotonNetwork.player.ID,getTotalScore());
+			GolfManager.setPlayersScore(PhotonNetwork.player.ID,getTotalScore());
             #else
             GolfManager.setPlayersScore(0, getTotalScore());
             #endif
@@ -366,7 +328,6 @@ public class GameScript : MonoBehaviour
         finishHole();
     }
 
-
     //returns the current state
     public State getState()
     {
@@ -376,9 +337,7 @@ public class GameScript : MonoBehaviour
     //returns the current hole
     public int getHole()
     {
-        //return Application.loadedLevel;
-        return SceneManagerHelper.ActiveSceneBuildIndex;
-
+        return Utility.CurrentSceneIndex;
     }
 
     //returns the current number of strokes!
@@ -391,8 +350,7 @@ public class GameScript : MonoBehaviour
     {
         int course = 18;
         int cousreIndex = 0;
-        //while(course < Application.loadedLevel)
-        while (course < SceneManagerHelper.ActiveSceneBuildIndex)
+        while (course < Utility.CurrentSceneIndex)
         {
             course += 18;
             cousreIndex++;
@@ -402,18 +360,15 @@ public class GameScript : MonoBehaviour
 
     public int getHoleNomUsingCourse()
     {
-        //return Application.loadedLevel;
-        return SceneManagerHelper.ActiveSceneBuildIndex;
+        return Utility.CurrentSceneIndex;
     }
 
     public bool goToNextLevel()
     {
         bool rc = true;
-        //int currentLevel = Application.loadedLevel;
-        int currentLevel = SceneManagerHelper.ActiveSceneBuildIndex;
+        int currentLevel = Utility.CurrentSceneIndex;
 
         int courseLevel = getHoleNomUsingCourse();
-        Debug.Log("courseLevel" + courseLevel);
         updateScores(courseLevel);
 
         TransitionScript ts = (TransitionScript)GameObject.FindObjectOfType(typeof(TransitionScript));
@@ -424,14 +379,11 @@ public class GameScript : MonoBehaviour
             GameManager.nextScene();
             if (ts)
             {
-
                 loadLevel(ts.sceneIndex);
-                //Application.LoadLevel(ts.sceneIndex);
             }
             else
             {
                 loadLevel(currentLevel + 1);
-                //Application.LoadLevel( currentLevel+1 );
             }
         }
         else
@@ -453,24 +405,20 @@ public class GameScript : MonoBehaviour
     void loadLevel(int levelToLoad)
     {
         #if PHOTON_MULTIPLAYER
-			GolfManager.loadLevel(levelToLoad,PhotonNetwork.player.ID);
-
+		GolfManager.loadLevel(levelToLoad,PhotonNetwork.player.ID);
         #else
-        //Application.LoadLevel(levelToLoad);
-        SceneManager.LoadScene(levelToLoad);
+        Utility.LoadScene(levelToLoad);
         #endif
     }
 
     void updateScores(int curLevel)
     {
-
         setScoreForHole(curLevel, currentNumberOfStrokes);
-
     }
 
     //sets the hole at the given index
     public void setParForHole(int holeIndex,
-                           int score)
+                              int score)
     {
         string id = "GolfTotalPar" + holeIndex.ToString();
         PlayerPrefs.SetInt(id, score);
@@ -486,7 +434,7 @@ public class GameScript : MonoBehaviour
 
     //sets the hole at the given index
     public void setScoreForHole(int holeIndex,
-                             int score)
+                                int score)
     {
         string id = "GolfTotalHole" + holeIndex.ToString();
         PlayerPrefs.SetInt(id, score);
@@ -531,7 +479,6 @@ public class GameScript : MonoBehaviour
     //sets the total score
     public void setTotalScore(int score)
     {
-
         PlayerPrefs.SetInt("GolfTotalHole", score);
     }
 
@@ -539,6 +486,4 @@ public class GameScript : MonoBehaviour
     {
         return m_par;
     }
-
 }
-

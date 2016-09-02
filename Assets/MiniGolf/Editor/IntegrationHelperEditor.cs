@@ -21,16 +21,16 @@ public class IntegrationHelperEditor : EditorWindow
         allTargets = new BuildTargetGroup[]
         {
             BuildTargetGroup.Standalone,
-            BuildTargetGroup.WebPlayer,
+            //BuildTargetGroup.WebPlayer,
+            BuildTargetGroup.WebGL,
             BuildTargetGroup.iOS,
             BuildTargetGroup.PS3,
             BuildTargetGroup.XBOX360,
             BuildTargetGroup.Android,
             //BuildTargetGroup.GLESEmu,
-            BuildTargetGroup.WebGL,
             BuildTargetGroup.WSA,
-            BuildTargetGroup.WP8,
-            BuildTargetGroup.BlackBerry,
+            //BuildTargetGroup.WP8,
+            //BuildTargetGroup.BlackBerry,
             BuildTargetGroup.Tizen,
             BuildTargetGroup.PSP2,
             BuildTargetGroup.PS4,
@@ -50,6 +50,8 @@ public class IntegrationHelperEditor : EditorWindow
 
         ShowIntegration("UNITY CROSS PLATFORM INPUT", "This will alow you to use computer input on a computer and touch on mobile. It a Standered Asset Pack", "https://www.assetstore.unity3d.com/en/#!/content/32351", "CROSS_PLATFORM_INPUT");
         ShowIntegration("PHOTON", "Enable this to turn this game into a multiplayer game", "https://www.assetstore.unity3d.com/en/#!/content/1786", "PHOTON_MULTIPLAYER");
+        ShowIntegration("PRIME 31", "Enable this to turn on Prime 31", "https://www.assetstore.unity3d.com/en/#!/content/1786", "GOT_PRIME31_GAMECENTER");
+        ShowIntegration("IPHONE BUILD", "Enable this to turn on I PHONE BUILD", "https://www.assetstore.unity3d.com/en/#!/content/1786", "MY_IPHONE_BUILD");
 
         GUILayout.EndScrollView();
 

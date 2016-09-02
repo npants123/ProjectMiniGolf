@@ -24,6 +24,7 @@ using UnityEngine;
 ///	WIN:
 ///		This occurs whenever the ball has either reached the hole or has run out of strokes.
 /// </summary>
+/// 
 public class BallScript : MonoBehaviour
 {
     #region varaibles
@@ -44,7 +45,6 @@ public class BallScript : MonoBehaviour
         // Either reached the hole or has run out of strokes.
         WIN,
         BIRDS_EYE}
-
     ;
 
     public Texture fireButtonTex;
@@ -56,7 +56,6 @@ public class BallScript : MonoBehaviour
 
     //the rotation scalar for the camera/ball
     public float rotateSpeed = 10f;
-
 
     //the minimum ammount of power
     public float minPower = 0.0125f;
@@ -70,7 +69,6 @@ public class BallScript : MonoBehaviour
 
     //the maximum force needed.
     public float ballForce = 2200f;
-
 
     //the delay time
     public float fallTime = 2.0f;
@@ -89,7 +87,6 @@ public class BallScript : MonoBehaviour
     //the angular velocity we use to help determine if the ball is stopped.
     public float minAngularVelocity = 1.0f;
 
-
     //the time the ball has to be "stopped before it registers"
     public float requiredStoppedTime = 0.15f;
     private float m_stoppedTime = 0f;
@@ -99,17 +96,13 @@ public class BallScript : MonoBehaviour
 
     private Quaternion m_ballRotation;
 
-
-
     //its the default position of the object
     private  Vector3 m_deafultPos;
     //its the default orientation of hte object
     private  Quaternion m_deafultRot;
 
-
     //the scale of the trale
     //private Vector3 m_traleScale = new Vector3(1f,1f,1f);
-
 
     //the audio clip that will be played when the ball hits a wall
     public AudioClip wallHitAC;
@@ -176,6 +169,9 @@ public class BallScript : MonoBehaviour
 
     public GUIStyle repeatButtonGS;
 
+    private Vector3 aimCameraOffset = new Vector3(0, 8, -8);
+    private float rollCameraOffset = 8f;
+    private float rollCameraYOffset = 2f;
     #endregion
 
     public void stop()
@@ -192,13 +188,8 @@ public class BallScript : MonoBehaviour
     {
     }
 
-    private Vector3 aimCameraOffset = new Vector3(0, 8, -8);
-    private float rollCameraOffset = 8f;
-    private float rollCameraYOffset = 2f;
-
     void init()
     {
-
         AimCamera aimCamera = (AimCamera)GameObject.FindObjectOfType(typeof(AimCamera));
         if (aimCamera)
         {
@@ -223,8 +214,6 @@ public class BallScript : MonoBehaviour
         //get a ref to the golf mat transform
 
         stop();
-
-
     }
 
     public void OnEnable()
@@ -273,8 +262,6 @@ public class BallScript : MonoBehaviour
         //get the trail renderer.
         m_trail = m_trailNode.transform.Find("Trail");
         enableTrail(false);
-
-
 
         transform.position = m_deafultPos;
         //aim our ball at the hole
@@ -350,14 +337,11 @@ public class BallScript : MonoBehaviour
                 GetComponent<AudioSource>().PlayOneShot(wallHitAC);
             }
         }
-
     }
-
 
     public void setMode(BallMode bmode)
     {
         BallManager.enterState(bmode.ToString());
-
 
         if (m_ballMode == BallMode.WIN)
         {
@@ -371,11 +355,8 @@ public class BallScript : MonoBehaviour
         if (m_won == false)
         {
             m_ballMode = bmode;
-
-
         }
     }
-
 
     public void setVelocity(Vector3 vec)
     {
@@ -396,15 +377,11 @@ public class BallScript : MonoBehaviour
             m_dir = GetComponent<Rigidbody>().velocity;
         }
 
-
         if (m_count >= 0)
         {
             m_prevDir = m_dir;
             m_dir = GetComponent<Rigidbody>().velocity;
-
         }
-
-
 
         //decraese the wall boost time
         m_wallBoostTime -= dt;
@@ -413,19 +390,22 @@ public class BallScript : MonoBehaviour
         if (m_ballMode != BallMode.AIM && m_ballMode != BallMode.BIRDS_EYE &&
             m_ballMode != BallMode.FALL && m_ballMode != BallMode.ACTION)
         {
-            Screen.lockCursor = false;
+            //Screen.lockCursor = false;
+            Utility.LockCursor = false;
         }
         else
         {
             if (Time.timeScale == 1)
             {
-                Screen.lockCursor = true;
+                //Screen.lockCursor = true;
+                Utility.LockCursor = true;
             }
         }
 
         if (Time.timeScale == 0)
         {
-            Screen.lockCursor = false;
+            //Screen.lockCursor = false;
+            Utility.LockCursor = false;
         }
 
 
@@ -483,7 +463,6 @@ public class BallScript : MonoBehaviour
                     handleFall(dt);
                 }
                 break;
-
         }
     }
 
@@ -503,15 +482,10 @@ public class BallScript : MonoBehaviour
         float mx = Input.GetAxis("Mouse X");
         float my = Input.GetAxis("Mouse Y");
 
-
-
         float sx = dt * -mx * onTeeSpeed;
         float sy = dt * -my * onTeeSpeed;
 
-
-
-
-        Screen.lockCursor = true;
+        Utility.LockCursor = true;
 
         //disable gravirty for now
         GetComponent<Rigidbody>().useGravity = false;
@@ -549,7 +523,6 @@ public class BallScript : MonoBehaviour
             //aim our ball at the hole
             lookAtHole();
         }
-
     }
 
     void aimStraight()
@@ -558,10 +531,8 @@ public class BallScript : MonoBehaviour
 
         holePos.y = transform.position.y;
 
-
         Vector3 dir = transform.position - holePos;
         transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
-
     }
 
     public Vector3 getHolePos()
@@ -593,10 +564,7 @@ public class BallScript : MonoBehaviour
         {
             GetComponent<Rigidbody>().GetComponent<Collider>().material = mat;
         }
-
     }
-
-
 
     void OnGUI()
     {
@@ -604,9 +572,7 @@ public class BallScript : MonoBehaviour
         {
             handleIOSGui();
             GUIHelper.drawHealthbar(GUIHelper.screenRect(0.025f, 0.25f, 0.045f, 0.5f), greenTex, redTex, m_currentPower);
-
         }
-
     }
 
     void handleIOSGui()
@@ -631,12 +597,9 @@ public class BallScript : MonoBehaviour
     //our ball is rolling
     private float m_angVelocityTime = 0f;
 
-
     void handleAction(float dt)
     {
         float angVelocity = GetComponent<Rigidbody>().angularVelocity.magnitude;
-
-
 
         //check to see the coniditions are okay
         //both the balls linear velocity and angular velocity have to be below a certain threshold in order for us to consider it to be "stopped".
@@ -650,7 +613,6 @@ public class BallScript : MonoBehaviour
         }
         //m_rollTime +=dt;
 
-
         float speed = Mathf.Abs(GetComponent<Rigidbody>().velocity.magnitude);
         if (m_slowDown && speed < minVelocity)
         {
@@ -661,9 +623,6 @@ public class BallScript : MonoBehaviour
         {
             stopBall();
         }
-
-
-
 
         m_rollTime += dt;
         //if our stopped time is greater than required stop time OR we have rolled for longer than our maximum rolltime
@@ -768,10 +727,7 @@ public class BallScript : MonoBehaviour
         transform.rotation = q;
         enableTrail(true);
 
-
-
         v = Input.GetAxis("Mouse X");
-
 
         if (Misc.isMobilePlatform())
         {
@@ -787,19 +743,15 @@ public class BallScript : MonoBehaviour
             }
         }
 
-
-
         //should our ball rotate the opposition direction.
         if (m_invertedX == 1)
         {
             v *= -1f;
         }
 
-
         float scalarSlider = 1f;//Constants.getSliderScalar();
         //PlayerPrefs.GetFloat( "GG_SLIDE_SCALARX3",.5f);
         transform.rotation *= Quaternion.AngleAxis(scalarSlider * v * rotateSpeed, Vector3.up);
-
 
         float currentForce = m_currentPower * ballForce;
 
@@ -832,8 +784,6 @@ public class BallScript : MonoBehaviour
         {
             fireBall(currentForce);
         }
-
-
     }
 
     public void changePower(float dt)
@@ -880,7 +830,6 @@ public class BallScript : MonoBehaviour
         m_fireDir = vec.normalized;
         m_fireDir2 = m_fireDir;
 
-
         transform.rotation = Quaternion.identity;
 
         //add some force to the ball
@@ -891,10 +840,8 @@ public class BallScript : MonoBehaviour
             m_gameScript.onRollMode();
         }
 
-
         //disable the trail
         enableTrail(false);
-
 
         //reset the stopped time
         m_stoppedTime = 0f;
@@ -919,13 +866,11 @@ public class BallScript : MonoBehaviour
         {
             //respawn our ball
             //	respawn();
-
             //call the gamescripts on stroke end function
             m_gameScript.onStrokeEnd();
 
             //	m_gameScript.takeStroke();
             respawn();
-
         }
     }
 
@@ -958,7 +903,6 @@ public class BallScript : MonoBehaviour
             Debug.Log("FALLOUT" + m_gameScript.getNomStrokes());
             //call the gamescripts fallout start
 
-
             m_gameScript.onFallOutStart();
 
             if (onWaterHitGO)
@@ -968,7 +912,6 @@ public class BallScript : MonoBehaviour
                 Destroy(go, 2);
             }
 
-
             if (m_ballMode != BallMode.WIN)
             {
                 m_fallTime = fallTime;
@@ -976,7 +919,6 @@ public class BallScript : MonoBehaviour
             }
         }
     }
-
 
     private bool m_slowDown = false;
 
@@ -1009,8 +951,6 @@ public class BallScript : MonoBehaviour
         m_currentPower = 0f;
         lookAtHole();
         m_fallTime = 0f;
-
-
     }
 
     public Vector3 getFireDir()
