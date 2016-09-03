@@ -15,7 +15,17 @@ public class WaterTrigger : MonoBehaviour
 
     #endregion
 
-    public void Start()
+    public  void OnEnable()
+    {
+        GolfManager.onStartHole += onShowStart;
+    }
+
+    public  void OnDisable()
+    {
+        GolfManager.onStartHole -= onShowStart;
+    }
+
+    public void onShowStart()
     {
         //get the player object
         GameObject go = GameObject.FindWithTag("Player");
@@ -27,6 +37,11 @@ public class WaterTrigger : MonoBehaviour
             //get the players ballscript
             m_ballScript = m_playerObj.GetComponent<BallScript>();
         }
+    }
+
+    public void Start()
+    {
+        onShowStart();
     }
 
     public void OnTriggerEnter(Collider col)

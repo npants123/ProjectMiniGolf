@@ -146,7 +146,7 @@ public class BallScript : MonoBehaviour
     //a ref to the golf-mats transform
     //	private Transform m_teeTransform;
 
-    private Transform m_holeTransform;
+    public Transform m_holeTransform;
 
     //	private Joysticks m_joysticks;
 
@@ -532,6 +532,11 @@ public class BallScript : MonoBehaviour
 
     public Vector3 getHolePos()
     {
+
+        //a ref to the hole transform
+        m_holeTransform = GameObject.FindWithTag("Hole").transform;
+
+
         Vector3 holePos = m_holeTransform.position;// + bc.center;
         holePos.y = transform.position.y;
         return holePos;

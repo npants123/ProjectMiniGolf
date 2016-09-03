@@ -133,7 +133,8 @@ public class ScoreState : MonoBehaviour
 
             if (scorePanel)
             {
-                scorePanel.SetActive(true);
+                //scorePanel.SetActive(true);
+                scorePanel.SetActive(vic);
             }
             if (m_audioSource)
             {

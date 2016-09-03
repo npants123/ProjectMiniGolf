@@ -62,10 +62,11 @@ public class PlayState : MonoBehaviour
 
     public void onGameOver(bool vic)
     {
-        m_gameover = true;
+        //m_gameover = true;
+        m_gameover = vic;
     }
 
-    public 	 void Update()
+    public void Update()
     {
         int holeIndex = m_gameScript.getHoleNomUsingCourse();
         if (holeGT)

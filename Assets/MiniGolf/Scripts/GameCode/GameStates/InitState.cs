@@ -69,7 +69,8 @@ public class InitState : MonoBehaviour
         if (waitGO)
         {
             waitGO.SetActive(false);
-            startButtonGO.SetActive(true);
+            onStart();
+            //startButtonGO.SetActive(true);
         }
     }
 
