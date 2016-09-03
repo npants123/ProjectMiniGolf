@@ -11,13 +11,33 @@ public class FlagCreator : MonoBehaviour
     /// The flag prefab to create
     /// </summary>
     public GameObject flagPrefab;
+
+    GameObject tempFlagPos;
     // Use this for initialization
-    void Start()
+    public  void OnEnable()
     {
+        GolfManager.onStartHole += onShowStart;
+    }
+
+    public  void OnDisable()
+    {
+        GolfManager.onStartHole -= onShowStart;
+    }
+
+    public void onShowStart()
+    {
+        if (tempFlagPos)
+            DestroyImmediate(tempFlagPos);
+
         GameObject go = GameObject.FindWithTag("Hole");
         if (go && flagPrefab)
         {
-            Instantiate(flagPrefab, go.transform.position, Quaternion.identity);
+            tempFlagPos = Instantiate(flagPrefab, go.transform.position, Quaternion.identity) as GameObject;
         }
+    }
+
+    void Start()
+    {
+        onShowStart();
     }
 }

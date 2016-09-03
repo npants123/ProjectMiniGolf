@@ -29,7 +29,7 @@ public class CourceController : MonoBehaviour
     public static int numberOfHoles = 18;
 
     // Current hole int in the index
-    int currentHoleIndex;
+    public int currentHoleIndex;
 
     // this will be the parent of the current hole
     Transform parentGO;
@@ -47,7 +47,7 @@ public class CourceController : MonoBehaviour
     }
 
     // Will load the next hole
-    void LoadNextHole ()
+    public void LoadNextHole ()
     {
         //destroy cvurrent hole
         DestoryCurrentHole();

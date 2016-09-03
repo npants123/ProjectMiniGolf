@@ -51,8 +51,6 @@ public class PauseState : MonoBehaviour
         //give up!
         m_gameScript.giveUp();
         FMG.Constants.fadeInFadeOut(resultsPanel, pausePanel);
-
-
     }
 
     public void returnToMain()
@@ -60,6 +58,4 @@ public class PauseState : MonoBehaviour
         //return to the main menu!
         m_gameScript.returnToMain();
     }
-
-
 }

@@ -34,6 +34,9 @@ public class GameScript : MonoBehaviour
     ///a ref to the ballscript
     private BallScript m_ballScript;
 
+    // a ref to the CourceController
+    private CourceController m_courceController;
+
     public enum State
     {
         INIT = 0,
@@ -97,9 +100,10 @@ public class GameScript : MonoBehaviour
         
     public void Awake()
     {
+        
         m_par = 3;
         RenderSettings.ambientLight = ambientColor;
-
+        m_courceController = (CourceController)GameObject.FindObjectOfType(typeof(CourceController));
         //unpause the game
         GameConfig.setPaused(false);
         ScoreState ss = (ScoreState)GameObject.FindObjectOfType(typeof(ScoreState));
@@ -114,13 +118,13 @@ public class GameScript : MonoBehaviour
         {
             setScoreForHole(getHoleNomUsingCourse(), currentNumberOfStrokes);
             setTotalScore(0);
-//			m_totalScore=0;
+            //          m_totalScore=0;
             m_totalPar = 0;
         }
         else
         {
 
-//			m_totalScore = getTotalScore();
+            //          m_totalScore = getTotalScore();
         }
         ParScript ps = (ParScript)GameObject.FindObjectOfType(typeof(ParScript));
         if (ps)
@@ -133,14 +137,6 @@ public class GameScript : MonoBehaviour
         {
             setParForHole(getHoleNomUsingCourse(), m_par);
         }
-
-        //get a ref to the gamescript!
-        GameObject go = GameObject.FindWithTag("Player");
-        if (go)
-        {
-            m_ballScript = go.GetComponent<BallScript>();
-        }
-
         GameManager.enterState(GameScript.State.INIT.ToString());
 
     }
@@ -233,6 +229,13 @@ public class GameScript : MonoBehaviour
     //start the game.
     public void startGame()
     {
+        //get a ref to the gamescript!
+        GameObject go = GameObject.FindWithTag("Player");
+        if (go)
+        {
+            m_ballScript = go.GetComponent<BallScript>();
+        }
+
         m_ballScript.setMode(BallScript.BallMode.AIM);
         m_state = State.PLAY;
     }
@@ -240,6 +243,12 @@ public class GameScript : MonoBehaviour
     //the ball has been placed on the tee, now move into aim mode.
     public void placeBall()
     {
+        //get a ref to the gamescript!
+        GameObject go = GameObject.FindWithTag("Player");
+        if (go)
+        {
+            m_ballScript = go.GetComponent<BallScript>();
+        }
         m_ballScript.setMode(BallScript.BallMode.AIM);
         m_state = State.PLAY;
     }
@@ -335,7 +344,8 @@ public class GameScript : MonoBehaviour
     //returns the current hole
     public int getHole()
     {
-        return Utility.CurrentSceneIndex;
+        //return Utility.CurrentSceneIndex;
+        return m_courceController.currentHoleIndex+1;
     }
 
     //returns the current number of strokes!
@@ -348,7 +358,8 @@ public class GameScript : MonoBehaviour
     {
         int course = 18;
         int cousreIndex = 0;
-        while (course < Utility.CurrentSceneIndex)
+        //while (course < Utility.CurrentSceneIndex)
+        while (course < m_courceController.currentHoleIndex+1)
         {
             course += 18;
             cousreIndex++;
@@ -358,15 +369,19 @@ public class GameScript : MonoBehaviour
 
     public int getHoleNomUsingCourse()
     {
-        return Utility.CurrentSceneIndex;
+        //return Utility.CurrentSceneIndex;
+        return m_courceController.currentHoleIndex +1 ;
     }
 
     public bool goToNextLevel()
     {
         bool rc = true;
-        int currentLevel = Utility.CurrentSceneIndex;
 
+        //int currentLevel = Utility.CurrentSceneIndex;
+        //int courseLevel = getHoleNomUsingCourse();
         int courseLevel = getHoleNomUsingCourse();
+        int currentLevel = m_courceController.currentHoleIndex;
+
         updateScores(courseLevel);
 
         TransitionScript ts = (TransitionScript)GameObject.FindObjectOfType(typeof(TransitionScript));
@@ -374,7 +389,9 @@ public class GameScript : MonoBehaviour
 
         if (courseLevel + 1 < HOLES_PER_COURSE + 1)
         {
+            
             GameManager.nextScene();
+            /*
             if (ts)
             {
                 loadLevel(ts.sceneIndex);
@@ -383,6 +400,18 @@ public class GameScript : MonoBehaviour
             {
                 loadLevel(currentLevel + 1);
             }
+            */
+            m_courceController.LoadNextHole();
+            currentNumberOfStrokes = 0;
+            //get a ref to the gamescript!
+            GameObject go = GameObject.FindWithTag("Player");
+            if (go)
+            {
+                m_ballScript = go.GetComponent<BallScript>();
+            }
+            BaseGameManager.gameover(false);
+
+            GolfManager.startHole();
         }
         else
         {
