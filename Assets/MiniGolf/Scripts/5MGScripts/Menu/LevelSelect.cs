@@ -25,10 +25,8 @@ namespace FMG
 
         void Awake()
         {
-
             int cellsPerPage = nomPerCol * nomPerRow;
-            //int tmpNomLevels = Application.levelCount-1-Application.loadedLevel;
-            int tmpNomLevels = Utility.SceneCount - 1 - Utility.CurrentSceneIndex;
+            int tmpNomLevels = Gameplay.SceneCount - 1 - Gameplay.CurrentSceneIndex;
 
             while (tmpNomLevels > 0)
             {
@@ -114,8 +112,7 @@ namespace FMG
                 pos.x = startPos.x;
                 for (int j = 0; j < nomPerCol; j++)
                 {
-                    //if (n < Application.levelCount - Application.loadedLevel)
-                    if (n < Utility.SceneCount - Utility.CurrentSceneIndex)
+                    if (n < Gameplay.SceneCount - Gameplay.CurrentSceneIndex)
                     {
                         GameObject newObject = (GameObject)Instantiate(levelButton, Vector3.zero, Quaternion.identity);
                         newObject.transform.parent = newPage.transform;
@@ -127,8 +124,8 @@ namespace FMG
                         }
 
                         LevelButton lb = newObject.GetComponent<LevelButton>();
-                        //lb.levelIndex = n + Application.loadedLevel;
-                        lb.levelIndex = n + SceneManagerHelper.ActiveSceneBuildIndex;
+
+                        lb.levelIndex = n + Gameplay.CurrentSceneIndex;
 
                         Text text = newObject.GetComponentInChildren<Text>();
                         text.text = n.ToString();

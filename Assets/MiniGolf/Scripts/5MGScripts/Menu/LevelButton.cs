@@ -9,7 +9,7 @@ namespace FMG
 
         public void onClick()
         {
-            Utility.LoadScene(levelIndex);
+            Gameplay.LoadScene(levelIndex);
         }
     }
 }

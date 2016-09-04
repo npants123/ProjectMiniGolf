@@ -36,7 +36,7 @@ public class NetworkEvents : MonoBehaviour
         {
             //Application.LoadLevel(1);
             //SceneManager.LoadScene(1);
-            Utility.LoadScene(1);
+            Gameplay.LoadScene(1);
         }
 #endif
     }

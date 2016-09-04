@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Constants
 {
-
-
     //the name of the URL which will hold the highscores php
     public static string baseURL = "http://inanegames.ca/miniPutt/highscores.php";
 
