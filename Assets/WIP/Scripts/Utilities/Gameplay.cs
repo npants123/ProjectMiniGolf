@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class Gameplay
 {
 
-    public static string Version = "0.0.0";
+    public static string Version = "0.0.1";
     public static string PlayerName = "Player";
 
     public static bool IsMultiplayer = false;
