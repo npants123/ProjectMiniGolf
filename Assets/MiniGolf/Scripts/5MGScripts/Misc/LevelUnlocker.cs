@@ -11,9 +11,9 @@ namespace FMG
         void Start()
         {
             //levelText.text = "Unlock level: " + Application.loadedLevel;
-            levelText.text = "Unlock level: " + Utility.CurrentSceneIndex;
+            levelText.text = "Unlock level: " + Gameplay.CurrentSceneIndex;
             //if (Application.loadedLevel < Constants.getMaxLevel())
-            if (Utility.CurrentSceneIndex < Constants.getMaxLevel())
+            if (Gameplay.CurrentSceneIndex < Constants.getMaxLevel())
             {
                 levelText.color = Color.blue;
                 Destroy(gameObject);
@@ -23,7 +23,7 @@ namespace FMG
         public void unlock()
         {
             //int nextMaxLevel = Application.loadedLevel + 1;
-            int nextMaxLevel = Utility.CurrentSceneIndex + 1;
+            int nextMaxLevel = Gameplay.CurrentSceneIndex + 1;
             Constants.setMaxLevel(nextMaxLevel);
             Debug.Log("unlock" + nextMaxLevel);
             Destroy(gameObject);

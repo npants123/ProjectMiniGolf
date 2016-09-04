@@ -206,7 +206,7 @@ public class GameScript : MonoBehaviour
         #if PHOTON_MULTIPLAYER
         GolfManager.loadLevel(0,PhotonNetwork.player.ID);
         #else
-        Utility.LoadScene(0);
+        Gameplay.LoadScene(0);
         #endif
     }
 
@@ -434,7 +434,7 @@ public class GameScript : MonoBehaviour
         #if PHOTON_MULTIPLAYER
 		GolfManager.loadLevel(levelToLoad,PhotonNetwork.player.ID);
         #else
-        Utility.LoadScene(levelToLoad);
+        Gameplay.LoadScene(levelToLoad);
         #endif
     }
 

@@ -25,9 +25,7 @@ namespace FMG
         {
             if (str.Equals("Restart"))
             {
-
-                //useFadeOut(Application.loadedLevel);
-                useFadeOut(Utility.CurrentSceneIndex);
+                useFadeOut(Gameplay.CurrentSceneIndex);
             }
             if (str.Equals("Unapuse"))
             {
@@ -48,8 +46,7 @@ namespace FMG
             }
             if (str.Equals("Next"))
             {
-                //int next = Application.loadedLevel+1;
-                int next = Utility.CurrentSceneIndex + 1;
+                int next = Gameplay.CurrentSceneIndex + 1;
                 Debug.Log("next " + next);
                 useFadeOut(next);
             }
@@ -58,7 +55,7 @@ namespace FMG
         public void useFadeOut(int sceneToLoad)
         {
             Time.timeScale = 1;
-            Utility.LoadScene(sceneToLoad);
+            Gameplay.LoadScene(sceneToLoad);
         }
     }
 }

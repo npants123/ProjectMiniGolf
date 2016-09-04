@@ -9,8 +9,6 @@ public class TranstionLoader : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //Application.LoadLevel(Constants.getLastSceneIndex());
-        //SceneManager.LoadScene(Constants.getLastSceneIndex());
-        Utility.LoadScene(Constants.getLastSceneIndex());
+        Gameplay.LoadScene(Constants.getLastSceneIndex());
     }
 }

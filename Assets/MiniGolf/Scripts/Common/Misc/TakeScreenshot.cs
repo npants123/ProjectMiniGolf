@@ -21,7 +21,7 @@ public class TakeScreenshot : MonoBehaviour
             int index = screenNom;
 
             //fn += Application.loadedLevelName + index.ToString() + ".png";
-            fn += Utility.CurrentSceneName + index.ToString() + ".png";
+            fn += Gameplay.CurrentSceneName + index.ToString() + ".png";
             Debug.Log("captureScreenshot:" + fn);
             Application.CaptureScreenshot(fn);
             screenNom++;
