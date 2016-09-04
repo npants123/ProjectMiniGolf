@@ -51,20 +51,14 @@ public static class Utility
     public static int CurrentSceneIndex
     {
 
-        // compile only for unity 5+
-        #if (!(UNITY_4_6 || UNITY_4_5 || UNITY_4_3 || UNITY_4_2 || UNITY_4_1 || UNITY_4_0 || UNITY_3_5))
         get
         {
-            return SceneManagerHelper.ActiveSceneBuildIndex;
+            #if UNITY_5_4_OR_NEWER
+            return SceneManager.GetActiveScene().buildIndex;
+            #else
+            return Application.loadedLevel;
+            #endif
         }
-
-        #else
-        // compile only for unity 4.6 and older
-        get
-        {
-        return Application.loadedLevel;
-        }
-        #endif
 
     }
 
@@ -75,19 +69,14 @@ public static class Utility
     public static string CurrentSceneName
     {
 
-        // compile only for unity 5+
-        #if (!(UNITY_4_6 || UNITY_4_5 || UNITY_4_3 || UNITY_4_2 || UNITY_4_1 || UNITY_4_0 || UNITY_3_5))
         get
         {
-            return SceneManagerHelper.ActiveSceneName;
+            #if UNITY_5_4_OR_NEWER
+            return SceneManager.GetActiveScene().name;
+            #else
+            return Application.loadedLevelName;
+            #endif
         }
-        #else
-        // compile only for unity 4.6 and older
-        get
-        {
-        return Application.loadedLevelName;
-        }
-        #endif
 
     }
 
@@ -154,6 +143,22 @@ public static class Utility
         return Application.levelCount;
         }
         #endif
+
+    }
+
+    /// <summary>
+    /// quits the game in the appropriate way, depending on whether we're running
+    /// in the editor, in a standalone build or a webplayer (these are the only
+    /// platforms supported by the 'Quit' method at present)
+    /// </summary>
+    public static void Quit()
+    {
+        #if UNITY_EDITOR
+        Debug.Log("Quit App");
+        #elif UNITY_STANDALONE
+        Application.Quit();
+        #endif
+
 
     }
 }
